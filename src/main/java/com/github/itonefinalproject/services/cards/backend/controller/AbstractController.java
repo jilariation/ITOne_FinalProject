@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 public abstract class AbstractController<D> {
     public abstract ResponseEntity<HttpStatus> createEntity(@RequestBody D entityDTO);
-    public abstract ResponseEntity<HttpStatus> findById(@PathVariable int id);
+    public abstract ResponseEntity<D> findById(@PathVariable int id);
     public abstract ResponseEntity<HttpStatus> updateEntity(@PathVariable int id, @RequestBody D updatedEntity);
     public abstract ResponseEntity<HttpStatus> deleteEntity(@PathVariable int id);
 }
