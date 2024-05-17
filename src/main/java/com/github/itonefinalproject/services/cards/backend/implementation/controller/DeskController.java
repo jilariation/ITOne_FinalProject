@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/desk")
 @RequiredArgsConstructor
@@ -26,7 +28,7 @@ public class DeskController extends AbstractController<DeskDto> {
 
     @GetMapping("/find/{id}")
     @Override
-    public ResponseEntity<DeskDto> findById(@PathVariable int id) {
+    public ResponseEntity<DeskDto> findById(@PathVariable UUID id) {
         Desk desk = deskService.findById(id);
         DeskDto deskDto = deskModelMapper.toDto(desk);
         return ResponseEntity.ok(deskDto);
@@ -34,7 +36,7 @@ public class DeskController extends AbstractController<DeskDto> {
 
     @PostMapping("/update/{id}")
     @Override
-    public ResponseEntity<HttpStatus> updateEntity(@PathVariable int id, @RequestBody DeskDto updatedEntity) {
+    public ResponseEntity<HttpStatus> updateEntity(@PathVariable UUID id, @RequestBody DeskDto updatedEntity) {
         Desk desk = deskModelMapper.toEntity(updatedEntity);
         deskService.updateEntity(id, desk);
         return ResponseEntity.ok(HttpStatus.OK);
@@ -42,7 +44,7 @@ public class DeskController extends AbstractController<DeskDto> {
 
     @DeleteMapping("/delete/{id}")
     @Override
-    public ResponseEntity<HttpStatus> deleteEntity(@PathVariable int id) {
+    public ResponseEntity<HttpStatus> deleteEntity(@PathVariable UUID id) {
         deskService.deleteEntity(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }

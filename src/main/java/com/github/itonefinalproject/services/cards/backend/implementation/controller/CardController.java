@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/card")
 @RequiredArgsConstructor
@@ -26,7 +28,7 @@ public class CardController extends AbstractController<CardDto> {
 
     @GetMapping("/find/{id}")
     @Override
-    public ResponseEntity<CardDto> findById(@PathVariable int id) {
+    public ResponseEntity<CardDto> findById(@PathVariable UUID id) {
         Card card = cardService.findById(id);
         CardDto cardDto = cardModelMapper.toDto(card);
         return ResponseEntity.ok(cardDto);
@@ -34,7 +36,7 @@ public class CardController extends AbstractController<CardDto> {
 
     @PostMapping("/update{id}")
     @Override
-    public ResponseEntity<HttpStatus> updateEntity(@PathVariable int id,
+    public ResponseEntity<HttpStatus> updateEntity(@PathVariable UUID id,
                                                    @RequestBody CardDto updatedEntity) {
         Card updatedCard = cardModelMapper.toEntity(updatedEntity);
         cardService.updateEntity(id, updatedCard);
@@ -43,7 +45,7 @@ public class CardController extends AbstractController<CardDto> {
 
     @DeleteMapping("/delete{id}")
     @Override
-    public ResponseEntity<HttpStatus> deleteEntity(@PathVariable int id) {
+    public ResponseEntity<HttpStatus> deleteEntity(@PathVariable UUID id) {
         cardService.deleteEntity(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }

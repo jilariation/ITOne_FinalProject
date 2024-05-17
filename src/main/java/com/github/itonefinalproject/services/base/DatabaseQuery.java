@@ -14,7 +14,7 @@ public enum DatabaseQuery {
     EMPLOYEE_UPDATE("update employee set first_name = ?, last_name = ?, surname = ? where id = ?"),
     EMPLOYEE_DELETE("delete from employee where id = ?"),
     CARD_FIND_BY_ID("select id, task_id, card_name from card where id = ?"),
-    CARD_CREATE("insert into card (task_id, card_name) VALUES (?, ?)"),
+    CARD_CREATE("insert into card (card_name, task_id) VALUES (?, ?)"),
     CARD_UPDATE("update card set task_id = ?, card_name = ? where id = ?;"),
     CARD_DELETE("delete from card where id = ?"),
     DESK_FIND_BY_ID("select id, task_id, card_name from card where id = ?"),

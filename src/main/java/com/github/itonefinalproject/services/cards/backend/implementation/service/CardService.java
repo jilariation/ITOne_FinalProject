@@ -6,6 +6,8 @@ import com.github.itonefinalproject.services.cards.domain.Card;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 /**
  * Сервис для {@link Card}
  */
@@ -16,21 +18,22 @@ public class CardService extends AbstractService<Card> {
 
     @Override
     public void createEntity(Card entity) {
-        cardRepository.createEntity(entity);
+        cardRepository.save(entity);
     }
 
     @Override
-    public Card findById(Integer id) {
-        return cardRepository.findById(id);
+    public Card findById(UUID id) {
+        return cardRepository.findById(id).orElseThrow();
     }
 
     @Override
-    public void updateEntity(Integer id, Card updatedEntity) {
-        cardRepository.updateEntity(id, updatedEntity);
+    public void updateEntity(UUID id, Card updatedEntity) {
+        updatedEntity.setId(id);
+        cardRepository.save(updatedEntity);
     }
 
     @Override
-    public void deleteEntity(Integer id) {
-        cardRepository.deleteEntity(id);
+    public void deleteEntity(UUID id) {
+        cardRepository.deleteById(id);
     }
 }
