@@ -6,6 +6,8 @@ import com.github.itonefinalproject.services.cards.domain.Employee;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 /**
  * Сервис для {@link Employee}
  */
@@ -15,21 +17,22 @@ public class EmployeeService extends AbstractService<Employee> {
     private final EmployeeRepository employeeRepository;
     @Override
     public void createEntity(Employee entity) {
-        employeeRepository.createEntity(entity);
+        employeeRepository.save(entity);
     }
 
     @Override
-    public Employee findById(Integer id) {
-        return employeeRepository.findById(id);
+    public Employee findById(UUID id) {
+        return employeeRepository.findById(id).orElseThrow();
     }
 
     @Override
-    public void updateEntity(Integer id, Employee updatedEntity) {
-        employeeRepository.updateEntity(id, updatedEntity);
+    public void updateEntity(UUID id, Employee updatedEntity) {
+        updatedEntity.setId(id);
+        employeeRepository.save(updatedEntity);
     }
 
     @Override
-    public void deleteEntity(Integer id) {
-        employeeRepository.deleteEntity(id);
+    public void deleteEntity(UUID id) {
+        employeeRepository.deleteById(id);
     }
 }

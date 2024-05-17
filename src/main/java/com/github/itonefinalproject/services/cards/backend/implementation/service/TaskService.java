@@ -6,6 +6,8 @@ import com.github.itonefinalproject.services.cards.domain.Task;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 /**
  * Сервис для {@link Task}
  */
@@ -15,21 +17,22 @@ public class TaskService extends AbstractService<Task> {
     private final TaskRepository taskRepository;
     @Override
     public void createEntity(Task entity) {
-        taskRepository.createEntity(entity);
+        taskRepository.save(entity);
     }
 
     @Override
-    public Task findById(Integer id) {
-        return taskRepository.findById(id);
+    public Task findById(UUID id) {
+        return taskRepository.findById(id).orElseThrow();
     }
 
     @Override
-    public void updateEntity(Integer id, Task updatedEntity) {
-        taskRepository.updateEntity(id, updatedEntity);
+    public void updateEntity(UUID id, Task updatedEntity) {
+        updatedEntity.setId(id);
+        taskRepository.save(updatedEntity);
     }
 
     @Override
-    public void deleteEntity(Integer id) {
-        taskRepository.deleteEntity(id);
+    public void deleteEntity(UUID id) {
+        taskRepository.deleteById(id);
     }
 }

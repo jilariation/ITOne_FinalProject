@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/task")
 @RequiredArgsConstructor
@@ -26,7 +28,7 @@ public class TaskController extends AbstractController<TaskDto> {
 
     @GetMapping("/find{id}")
     @Override
-    public ResponseEntity<TaskDto> findById(@PathVariable int id) {
+    public ResponseEntity<TaskDto> findById(@PathVariable UUID id) {
         Task task = taskService.findById(id);
         TaskDto  taskDto = taskModelMapper.toDto(task);
         return ResponseEntity.ok(taskDto);
@@ -34,7 +36,7 @@ public class TaskController extends AbstractController<TaskDto> {
 
     @PostMapping("/update{id}")
     @Override
-    public ResponseEntity<HttpStatus> updateEntity(@PathVariable int id, @RequestBody TaskDto updatedEntity) {
+    public ResponseEntity<HttpStatus> updateEntity(@PathVariable UUID id, @RequestBody TaskDto updatedEntity) {
         Task task = taskModelMapper.toEntity(updatedEntity);
         taskService.updateEntity(id, task);
         return ResponseEntity.ok(HttpStatus.OK);
@@ -42,7 +44,7 @@ public class TaskController extends AbstractController<TaskDto> {
 
     @DeleteMapping("/delete/{id}")
     @Override
-    public ResponseEntity<HttpStatus> deleteEntity(@PathVariable int id) {
+    public ResponseEntity<HttpStatus> deleteEntity(@PathVariable UUID id) {
         taskService.deleteEntity(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
