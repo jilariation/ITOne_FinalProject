@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
  * Dto для {@link Employee}
@@ -25,5 +24,5 @@ public class EmployeeDto{
     @NotEmpty(message = "Пароль не должен быть пустым")
     private String password;
 
-    private DeskDto deskDto;
+    private DeskDtoForDeskController deskDtoForDeskController;
 }

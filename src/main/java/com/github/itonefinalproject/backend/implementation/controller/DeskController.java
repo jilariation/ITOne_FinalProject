@@ -1,7 +1,7 @@
 package com.github.itonefinalproject.backend.implementation.controller;
 
 import com.github.itonefinalproject.domain.Desk;
-import com.github.itonefinalproject.dto.DeskDto;
+import com.github.itonefinalproject.dto.DeskDtoForDeskController;
 import com.github.itonefinalproject.backend.controller.AbstractController;
 import com.github.itonefinalproject.backend.implementation.service.DeskService;
 import com.github.itonefinalproject.backend.mapper.DeskModelMapper;
@@ -20,19 +20,21 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/desks")
 @RequiredArgsConstructor
-public class DeskController extends AbstractController<DeskDto> {
+public class DeskController extends AbstractController<DeskDtoForDeskController> {
     private final DeskModelMapper deskModelMapper;
     private final DeskService deskService;
 
     @GetMapping()
-    public List<DeskDto> findAllDesks() {
-        return deskService.findAll().stream()
-                .map(deskModelMapper::toDto).collect(Collectors.toList());
+    public List<DeskDtoForDeskController> findAllDesks() {
+        return deskService.findAll()
+                .stream()
+                .map(deskModelMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @PostMapping("/create")
     @Override
-    public ResponseEntity<HttpStatus> createEntity(@RequestBody DeskDto entityDTO) {
+    public ResponseEntity<HttpStatus> createEntity(@RequestBody DeskDtoForDeskController entityDTO) {
         Desk desk = deskModelMapper.toEntity(entityDTO);
         deskService.createEntity(desk);
         return ResponseEntity.ok(HttpStatus.CREATED);
@@ -40,15 +42,15 @@ public class DeskController extends AbstractController<DeskDto> {
 
     @GetMapping("/{id}")
     @Override
-    public ResponseEntity<DeskDto> findById(@PathVariable UUID id) {
+    public ResponseEntity<DeskDtoForDeskController> findById(@PathVariable UUID id) {
         Desk desk = deskService.findById(id);
-        DeskDto deskDto = deskModelMapper.toDto(desk);
-        return ResponseEntity.ok(deskDto);
+        DeskDtoForDeskController deskDtoForDeskController = deskModelMapper.toDto(desk);
+        return ResponseEntity.ok(deskDtoForDeskController);
     }
 
     @PostMapping("/update/{id}")
     @Override
-    public ResponseEntity<HttpStatus> updateEntity(@PathVariable UUID id, @RequestBody DeskDto updatedEntity) {
+    public ResponseEntity<HttpStatus> updateEntity(@PathVariable UUID id, @RequestBody DeskDtoForDeskController updatedEntity) {
         Desk desk = deskModelMapper.toEntity(updatedEntity);
         deskService.updateEntity(id, desk);
         return ResponseEntity.ok(HttpStatus.OK);

@@ -3,7 +3,6 @@ package com.github.itonefinalproject.dto;
 import com.github.itonefinalproject.domain.Desk;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ import java.util.List;
  * Dto для {@link Desk}
  */
 @Data
-public class DeskDto {
+public class DeskDtoForDeskController {
     @NotEmpty(message = "Название не должно быть пустым")
     String name;
 
