@@ -6,6 +6,7 @@ import com.github.itonefinalproject.backend.service.AbstractService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -15,6 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CardService extends AbstractService<Card> {
     private final CardRepository cardRepository;
+    private final DeskService deskService;
 
     @Override
     public void createEntity(Card entity) {
@@ -35,5 +37,18 @@ public class CardService extends AbstractService<Card> {
     @Override
     public void deleteEntity(UUID id) {
         cardRepository.deleteById(id);
+    }
+
+    public List<Card> findAll() {
+        return cardRepository.findAll();
+    }
+
+    public void addCard(UUID uuid, Card card) {
+        enrichDesk(card, uuid);
+        cardRepository.save(card);
+    }
+
+    private void enrichDesk(Card card,UUID uuid) {
+        card.setDesk(deskService.findById(uuid));
     }
 }
