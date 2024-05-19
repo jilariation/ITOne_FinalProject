@@ -1,11 +1,19 @@
 spring:
   datasource:
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
-    driver-class-name: ${DATABASE_DRIVER}
-
-DATABASE_URL: "jdbc:postgresql://localhost:5432/itone_db"
-DATABASE_USERNAME: "postgres"
-DATABASE_PASSWORD: "postgres"
-DATABASE_DRIVER: "org.postgresql.Driver"
+    url: jdbc:postgresql://ifp-db:5432/ifp_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  flyway:
+    locations: classpath:db/migration
