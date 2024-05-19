@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    image: app:app
+    container_name: container_app
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - ifp-db
+
+  ifp-db:
+    image: postgres:16-alpine3.19
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ifp_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./postgres_data:/var/lib/postgresql/date/"

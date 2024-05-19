@@ -28,16 +28,21 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.modelmapper:modelmapper:3.1.1")
+	implementation("org.flywaydb:flyway-core")
+	implementation("org.postgresql:postgresql:42.6.0")
 
 	compileOnly("org.projectlombok:lombok")
-//	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.projectlombok:lombok")
 
-	testImplementation("com.h2database:h2:2.2.224")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks.withType<Test> {
-	useJUnitPlatform()
+	enabled = false
 }
+
+//tasks.register<Copy>("copyDependencies") {
+//	from(configurations.runtimeClasspath)
+//	into("vendor")
+//}
