@@ -42,3 +42,6 @@ create table if not exists desk (
 
     foreign key (employee_id) references employee(id)
 );
+
+insert into employee(id, desk_id, employee_name, employee_email, employee_password, created, updated)
+values ('570b06eb-9a03-4ad0-8e45-a25bdba578ac', '647918e5-0517-481c-a588-51f51c4269b2', 'Alex', 'alex@gmail.com', '123456789', '2024-05-20', null)

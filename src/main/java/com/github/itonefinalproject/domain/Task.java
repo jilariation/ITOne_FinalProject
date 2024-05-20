@@ -16,7 +16,8 @@ public class Task extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "card_id", referencedColumnName = "id")
-   private Card card;
+    private Card card;
+
     @ManyToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;

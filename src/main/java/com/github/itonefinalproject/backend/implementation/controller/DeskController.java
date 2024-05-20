@@ -40,7 +40,7 @@ public class DeskController extends AbstractController<DeskDtoForDeskController>
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     @Override
     public ResponseEntity<DeskDtoForDeskController> findById(@PathVariable UUID id) {
         Desk desk = deskService.findById(id);

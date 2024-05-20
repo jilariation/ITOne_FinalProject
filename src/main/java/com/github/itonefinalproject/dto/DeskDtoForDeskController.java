@@ -14,6 +14,6 @@ public class DeskDtoForDeskController {
     @NotEmpty(message = "Название не должно быть пустым")
     String name;
 
-    List<CardDto> cards;
-    List<EmployeeDto> employees;
+    List<CardDtoForDeskController> cards;
+    List<EmployeeDtoForDeskController> employees;
 }
