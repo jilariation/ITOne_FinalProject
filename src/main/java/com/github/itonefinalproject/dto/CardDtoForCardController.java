@@ -17,5 +17,5 @@ public class CardDtoForCardController {
     @NotEmpty(message = "UUID доски не должен быть пустым")
     private UUID deskId;
 
-    private List<TaskDto> tasks;
+    private List<TaskDtoForDeskController> tasks;
 }

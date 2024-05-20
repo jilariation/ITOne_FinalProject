@@ -10,7 +10,7 @@ import lombok.Data;
  * Dto для {@link Employee}
  */
 @Data
-public class EmployeeDto{
+public class EmployeeDtoForDeskController {
     @Size(max = 100, message = "Логин не должен превыщать 100 символов")
     @NotEmpty(message = "Логин не должен быть пустым")
     private String name;
@@ -23,6 +23,4 @@ public class EmployeeDto{
     @Size(max = 255, message = "Пароль не должен превышать 255 символов")
     @NotEmpty(message = "Пароль не должен быть пустым")
     private String password;
-
-    private DeskDtoForDeskController deskDtoForDeskController;
 }

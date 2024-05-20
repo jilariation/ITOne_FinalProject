@@ -42,7 +42,7 @@ public class CardController extends AbstractController<CardDtoForCardController>
     @Override
     public ResponseEntity<HttpStatus> createEntity(@RequestBody CardDtoForCardController entityDTO) {
         Card card = cardModelMapper.toEntity(entityDTO);
-        cardService.addCard(entityDTO.getDeskId(),card);
+        cardService.addCard(entityDTO.getDeskId(), card);
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
@@ -50,20 +50,20 @@ public class CardController extends AbstractController<CardDtoForCardController>
     @Override
     public ResponseEntity<CardDtoForCardController> findById(@PathVariable UUID id) {
         Card card = cardService.findById(id);
-        CardDtoForCardController cardDto = cardModelMapper.toDto(card);
+        CardDtoForCardController cardDto = cardModelMapper.toCardDto(card);
         return ResponseEntity.ok(cardDto);
     }
 
-    @PostMapping("/update{id}")
+    @PostMapping("/update/{id}")
     @Override
     public ResponseEntity<HttpStatus> updateEntity(@PathVariable UUID id,
                                                    @RequestBody CardDtoForCardController updatedEntity) {
         Card updatedCard = cardModelMapper.toEntity(updatedEntity);
-        cardService.updateEntity(id, updatedCard);
+        cardService.updateCard(id, updatedEntity.getDeskId(), updatedCard);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete{id}")
+    @DeleteMapping("/delete/{id}")
     @Override
     public ResponseEntity<HttpStatus> deleteEntity(@PathVariable UUID id) {
         cardService.deleteEntity(id);
