@@ -1,8 +1,11 @@
 package com.github.itonefinalproject.domain;
 
+import com.github.itonefinalproject.domain.enums.KindOfTaskEnum;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -10,7 +13,9 @@ import lombok.EqualsAndHashCode;
 @Data
 public class Task extends AbstractEntity {
     @Column(name = "kind_of_task")
-    private KindOfTaskEnum kindOfTaskEnum;
+    @Enumerated(EnumType.STRING)
+    private List<KindOfTaskEnum> kindOfTaskEnum;
+
     @Column(name = "task_name")
     private String name;
 
@@ -18,7 +23,6 @@ public class Task extends AbstractEntity {
     @JoinColumn(name = "card_id", referencedColumnName = "id")
     private Card card;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "id")
-    private Employee employee;
+    @OneToMany
+    private List<Employee> employees;
 }
