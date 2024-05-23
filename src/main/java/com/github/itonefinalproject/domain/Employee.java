@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
@@ -16,7 +18,11 @@ public class Employee extends AbstractEntity {
     @Column(name = "employee_password")
     private String password;
 
-    @ManyToOne
+    @ManyToMany
     @JoinColumn(name = "desk_id", referencedColumnName = "id")
-    private Desk desk;
+    private List<Desk> desks;
+
+    @ManyToOne
+    @JoinColumn(name = "task_id", referencedColumnName = "id")
+    private Task task;
 }

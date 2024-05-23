@@ -1,25 +1,27 @@
 create table if not exists employee(
                                        id uuid primary key,
                                        desk_id uuid not null,
+                                       task_id uuid not null,
                                        employee_name varchar(100) not null,
                                        employee_email varchar(150) not null,
                                        employee_password varchar(250) not null,
                                        created date not null,
                                        updated date,
 
-                                       foreign key (desk_id) references desk(id)
+                                       foreign key (desk_id) references desk(id),
+                                       foreign key (task_id) references task(id),
+
+                                       unique (employee_email, employee_name)
 );
 
 create table if not exists task(
                                    id uuid primary key,
                                    card_id uuid not null,
-                                   employee_id uuid,
                                    kind_of_task varchar(30) not null,
                                    task_name varchar(100) not null,
                                    created date not null,
                                    updated date,
 
-                                   foreign key (employee_id) references employee(id),
                                    foreign key (card_id) references card(id)
 );
 
