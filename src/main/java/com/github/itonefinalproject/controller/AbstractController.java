@@ -17,6 +17,6 @@ public abstract class AbstractController<REQ, RESP, CREATE> {
     public abstract ResponseEntity<List<RESP>> findAll();
     public abstract ResponseEntity<RESP> createEntity(CREATE entityDto);
     public abstract ResponseEntity<RESP> findById(UUID id);
-    public abstract ResponseEntity<HttpStatus> updateEntity(UUID id, REQ updatedEntityDto);
+    public abstract ResponseEntity<RESP> updateEntity(UUID id, REQ updatedEntityDto);
     public abstract ResponseEntity<HttpStatus> deleteEntity(UUID id);
 }

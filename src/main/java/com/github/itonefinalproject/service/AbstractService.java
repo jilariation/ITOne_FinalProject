@@ -5,16 +5,15 @@ import java.util.UUID;
 
 /**
  * Абстрактный класс для обобщения логики сервиса
- * @param <TYPE> Тип сущность, для которой создается сервис
  * @param <RESP> Response dto сущности
  * @param <REQ> Request dto сущности
  */
-public interface AbstractService<TYPE, RESP, REQ> {
+public interface AbstractService<REQ, RESP, CREATE> {
     /**
      * Добавление сущности в базу данных
      * @param entityDto Сущность, которую нужно добавить
      */
-    REQ createEntity(REQ entityDto);
+    RESP createEntity(CREATE entityDto);
 
     /**
      * Получить сущность по ее ID
@@ -28,7 +27,7 @@ public interface AbstractService<TYPE, RESP, REQ> {
      * @param id ID сущности
      * @param updatedEntityDto Обновленная сущность
      */
-    void updateEntity(UUID id, REQ updatedEntityDto);
+    RESP updateEntity(UUID id, REQ updatedEntityDto);
 
     /**
      * Удаляет сущность из базы данных по ее ID

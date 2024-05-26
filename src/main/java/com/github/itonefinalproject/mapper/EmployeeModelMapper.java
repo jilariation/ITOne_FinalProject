@@ -11,16 +11,27 @@ import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
-public class EmployeeModelMapper extends AbstractModelMapper<Employee, EmployeeRequest, EmployeeResponse> {
+public class EmployeeModelMapper extends AbstractModelMapper<Employee, EmployeeResponse> {
     private final ModelMapper modelMapper;
 
     @Override
     public Employee toEntity(EmployeeResponse dto) {
-        return Objects.isNull(dto) ? null : modelMapper.map(dto, Employee.class);
+        return null;
     }
 
     @Override
     public EmployeeResponse toDto(Employee employee) {
-        return Objects.isNull(employee) ? null : modelMapper.map(employee, EmployeeResponse.class);
+        return modelMapper.map(employee, EmployeeResponse.class);
     }
+
+
+//    @Override
+//    public Employee toEntity(EmployeeResponse dto) {
+//        return Objects.isNull(dto) ? null : modelMapper.map(dto, Employee.class);
+//    }
+//
+//    @Override
+//    public EmployeeResponse toDto(Employee employee) {
+//        return Objects.isNull(employee) ? null : modelMapper.map(employee, EmployeeResponse.class);
+//    }
 }

@@ -2,6 +2,7 @@ package com.github.itonefinalproject.implementation.controller;
 
 import com.github.itonefinalproject.controller.AbstractController;
 import com.github.itonefinalproject.domain.Desk;
+import com.github.itonefinalproject.dto.card.CreateCardDto;
 import com.github.itonefinalproject.dto.desk.CreateDeskDto;
 import com.github.itonefinalproject.dto.desk.DeskRequest;
 import com.github.itonefinalproject.dto.desk.DeskResponse;
@@ -24,8 +25,7 @@ import java.util.UUID;
 @RequestMapping("/desks")
 @RequiredArgsConstructor
 @Tag(name = "Desks", description = "Контроллер для работы с досками")
-public class DeskController
-        extends AbstractController<DeskRequest, DeskResponse, CreateDeskDto> {
+public class DeskController extends AbstractController<DeskRequest, DeskResponse, CreateDeskDto> {
 
     private final DeskService deskService;
 
@@ -55,7 +55,8 @@ public class DeskController
     @PostMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Override
-    public ResponseEntity<HttpStatus> updateEntity(@PathVariable UUID id, @RequestBody @Valid DeskRequest updatedEntityDto) {
+    public ResponseEntity<DeskResponse> updateEntity(@PathVariable UUID id,
+                                                     @RequestBody @Valid DeskRequest updatedEntityDto) {
         return ResponseEntity.ok(deskService.updateEntity(id, updatedEntityDto));
     }
 

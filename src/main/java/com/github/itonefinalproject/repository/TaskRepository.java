@@ -1,4 +1,4 @@
-package com.github.itonefinalproject.implementation.repository;
+package com.github.itonefinalproject.repository;
 
 import com.github.itonefinalproject.domain.Task;
 import org.springframework.data.jpa.repository.JpaRepository;

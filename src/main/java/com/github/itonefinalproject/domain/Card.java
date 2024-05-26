@@ -1,23 +1,25 @@
 package com.github.itonefinalproject.domain;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "card")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Card extends AbstractEntity {
     @Column(name = "card_name")
     private String name;
 
-    @OneToMany(mappedBy = "card")
+    @OneToMany(mappedBy = "card", fetch = FetchType.LAZY)
     private List<Task> tasks;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "desk_id", referencedColumnName = "id")
     private Desk desk;
 }

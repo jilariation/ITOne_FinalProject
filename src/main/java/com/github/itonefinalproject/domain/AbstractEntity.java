@@ -7,11 +7,13 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @MappedSuperclass
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public abstract class AbstractEntity {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id = UUID.randomUUID();
 
     @Column(name = "created", updatable = false)

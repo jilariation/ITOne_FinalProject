@@ -10,10 +10,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class TaskModelMapper extends AbstractModelMapper<Task, TaskRequest, TaskResponse> {
+public class TaskModelMapper extends AbstractModelMapper<Task, TaskResponse> {
     private final ModelMapper modelMapper;
     private final EmployeeModelMapper employeeModelMapper;
 
@@ -24,14 +25,29 @@ public class TaskModelMapper extends AbstractModelMapper<Task, TaskRequest, Task
 
     @Override
     public TaskResponse toDto(Task task) {
-        TaskResponse taskResponse = Objects.isNull(task) ? null : modelMapper.map(task, TaskResponse.class);
-
+        TaskResponse taskResponse = modelMapper.map(task, TaskResponse.class);
         List<EmployeeResponse> employeeResponseList = task.getEmployees().stream()
                 .map(employeeModelMapper::toDto)
                 .toList();
-
         taskResponse.setEmployees(employeeResponseList);
-
         return taskResponse;
     }
+
+//    @Override
+//    public Task toEntity(TaskResponse dto) {
+//        return null;
+//    }
+//
+//    @Override
+//    public TaskResponse toDto(Task task) {
+//        TaskResponse taskResponse = Objects.isNull(task) ? null : modelMapper.map(task, TaskResponse.class);
+//
+//        List<EmployeeResponse> employeeResponseList = task.getEmployees().stream()
+//                .map(employeeModelMapper::toDto)
+//                .toList();
+//
+//        taskResponse.setEmployees(employeeResponseList);
+//
+//        return taskResponse;
+//    }
 }

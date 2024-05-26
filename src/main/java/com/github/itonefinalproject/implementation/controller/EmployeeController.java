@@ -58,14 +58,14 @@ public class EmployeeController
     @PostMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Override
-    public ResponseEntity<HttpStatus> updateEntity(@PathVariable UUID id, @RequestBody @Valid EmployeeRequest updatedEntityDto) {
+    public ResponseEntity<EmployeeResponse> updateEntity(@PathVariable UUID id, @RequestBody @Valid EmployeeRequest updatedEntityDto) {
         return ResponseEntity.ok(employeeService.updateEntity(id,updatedEntityDto));
     }
 
     @DeleteMapping("/delete/{id}")
     @Override
     public ResponseEntity<HttpStatus> deleteEntity(@PathVariable UUID id) {
-        employeeServiceImpl.deleteEntity(id);
+        employeeService.deleteEntity(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 }

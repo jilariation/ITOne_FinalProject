@@ -1,12 +1,15 @@
 package com.github.itonefinalproject.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public abstract class AbstractDto {
     UUID Id;
 

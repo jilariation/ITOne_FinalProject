@@ -1,13 +1,15 @@
 package com.github.itonefinalproject.domain;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "employee")
 public class Employee extends AbstractEntity {
@@ -18,11 +20,14 @@ public class Employee extends AbstractEntity {
     @Column(name = "employee_password")
     private String password;
 
-    @ManyToMany
-    @JoinColumn(name = "desk_id", referencedColumnName = "id")
+    @ManyToMany(mappedBy = "employees", fetch = FetchType.LAZY)
     private List<Desk> desks;
 
-    @ManyToOne
-    @JoinColumn(name = "task_id", referencedColumnName = "id")
-    private Task task;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "task_employee",
+            joinColumns = {@JoinColumn(name = "employee_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "task_id", referencedColumnName = "id")}
+    )
+    private List<Task> tasks;
 }

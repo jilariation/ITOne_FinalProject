@@ -3,18 +3,22 @@ package com.github.itonefinalproject.dto.desk;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class CreateDeskDto {
+    @Size(max = 100, message = "Название доски не должно быть больше 100 символов")
     @NotBlank(message = "Название не должно быть пустым")
-    @Size(max = 150, message = "Название доски не должно превышать 150 символов")
     String name;
 
-    private List<UUID> cardsId;
-    private List<UUID> employeeIds;
+    private List<UUID> cardUuidsList;
+    private List<UUID> employeeUuidsList;
 }

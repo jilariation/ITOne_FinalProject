@@ -1,11 +1,25 @@
-insert into desk(id, desk_name, created, updated)
-values ('67d9626b-9844-4540-ac14-343b7de42fe6', 'Test desk', '2024-05-18', null);
+-- Создание досок
+INSERT INTO desk (id, desk_name, created, updated) VALUES
+('11111111-1111-1111-1111-111111111111', 'Доска 1', '2024-05-26', '2024-05-26'),
+('22222222-2222-2222-2222-222222222222', 'Доска 2', '2024-05-26', '2024-05-26');
 
-insert into card(id, desk_id, card_name, created, updated)
-values ('38053f6e-c73c-47d6-9118-eeac6ca6ddcc', '67d9626b-9844-4540-ac14-343b7de42fe6', 'В процессе', '2024-05-18', null);
+-- Создание сотрудников
+INSERT INTO employee (id, employee_name, employee_email, employee_password, created, updated) VALUES
+('33333333-3333-3333-3333-333333333333', 'Сотрудник 1', 'employee1@example.com', 'password1', '2024-05-26', '2024-05-26'),
+('44444444-4444-4444-4444-444444444444', 'Сотрудник 2', 'employee2@example.com', 'password2', '2024-05-26', '2024-05-26'),
+('55555555-5555-5555-5555-555555555555', 'Сотрудник 3', 'employee3@example.com', 'password3', '2024-05-26', '2024-05-26');
 
-insert into card(id, desk_id, card_name, created, updated)
-values ('18235b7e-a60b-4a6b-bdd1-1b1129b063f0', '67d9626b-9844-4540-ac14-343b7de42fe6', 'Нужно сделать', '2024-05-18', null);
+-- Создание карточек
+INSERT INTO card (id, desk_id, card_name, created, updated) VALUES
+('66666666-6666-6666-6666-666666666666', '11111111-1111-1111-1111-111111111111', 'Карточка 1', '2024-05-26', '2024-05-26'),
+('77777777-7777-7777-7777-777777777777', '11111111-1111-1111-1111-111111111111', 'Карточка 2', '2024-05-26', '2024-05-26'),
+('88888888-8888-8888-8888-888888888888', '22222222-2222-2222-2222-222222222222', 'Карточка 3', '2024-05-26', '2024-05-26');
 
-insert into card(id, desk_id, card_name, created, updated)
-values ('d4fa8542-db28-4481-93d7-0ab609583f05', '67d9626b-9844-4540-ac14-343b7de42fe6', 'Готово', '2024-05-18', null);
+-- Создание задач
+INSERT INTO task (id, card_id, kind_of_task, task_name, created, updated) VALUES
+('99999999-9999-9999-9999-999999999999', '66666666-6666-6666-6666-666666666666', 'External', 'Задача 1', '2024-05-26', '2024-05-26'),
+('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '66666666-6666-6666-6666-666666666666', 'Production', 'Задача 2', '2024-05-26', '2024-05-26'),
+('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', '77777777-7777-7777-7777-777777777777', 'Marketing', 'Задача 3', '2024-05-26', '2024-05-26'),
+('cccccccc-cccc-cccc-cccc-cccccccccccc', '88888888-8888-8888-8888-888888888888', 'Marketing', 'Задача 4', '2024-05-26', '2024-05-26'),
+('dddddddd-dddd-dddd-dddd-dddddddddddd', '88888888-8888-8888-8888-888888888888', 'Design', 'Задача 5', '2024-05-26', '2024-05-26');
+

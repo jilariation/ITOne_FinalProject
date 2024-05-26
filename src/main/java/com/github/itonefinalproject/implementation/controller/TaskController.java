@@ -58,7 +58,7 @@ public class TaskController
     @PostMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Override
-    public ResponseEntity<HttpStatus> updateEntity(@PathVariable UUID id, @RequestBody @Valid TaskRequest updatedEntityDto) {
+    public ResponseEntity<TaskResponse> updateEntity(@PathVariable UUID id, @RequestBody @Valid TaskRequest updatedEntityDto) {
         return ResponseEntity.ok(taskService.updateEntity(id, updatedEntityDto));
     }
 

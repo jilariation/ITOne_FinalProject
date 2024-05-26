@@ -57,7 +57,7 @@ public class CardController
     @Operation(summary = "Обновление карточки по ее id")
     @PostMapping("/update/{id}")
     @Override
-    public ResponseEntity<HttpStatus> updateEntity(@PathVariable UUID id,
+    public ResponseEntity<CardResponse> updateEntity(@PathVariable UUID id,
                                                    @RequestBody @Valid CardRequest updatedEntityDto) {
         return ResponseEntity.ok(cardService.updateEntity(id, updatedEntityDto));
     }
