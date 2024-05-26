@@ -19,12 +19,10 @@ public class Task extends AbstractEntity {
     @Column(name = "task_name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "card_id", referencedColumnName = "id")
     private Card card;
 
-    @ManyToMany(mappedBy = "tasks",
-            fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(mappedBy = "tasks", fetch = FetchType.LAZY)
     private List<Employee> employees;
 }

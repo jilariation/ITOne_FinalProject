@@ -11,10 +11,4 @@ import java.util.List;
 import java.util.UUID;
 
 public interface CardService extends AbstractService<CardRequest, CardResponse, CreateCardDto> {
-    /**
-     * Находит dto всех {@link Card} по их ID
-     * @param uuid ID {@link Card}
-     * @return Возращает List со всеми {@link Card}
-     */
-    List<CardResponse> getCardsById(List<UUID> uuid);
 }

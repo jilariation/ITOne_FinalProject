@@ -17,7 +17,5 @@ public class CreateCardDto {
     private String name;
 
     private List<UUID> tasksIds;
-
-    @NotBlank(message = "Id доски не должно быть пустым")
     private UUID deskId;
 }

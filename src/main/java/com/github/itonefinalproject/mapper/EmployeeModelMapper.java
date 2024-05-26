@@ -1,6 +1,7 @@
 package com.github.itonefinalproject.mapper;
 
 import com.github.itonefinalproject.domain.Employee;
+import com.github.itonefinalproject.dto.employee.CreateEmployeeDto;
 import com.github.itonefinalproject.dto.employee.EmployeeRequest;
 import com.github.itonefinalproject.dto.employee.EmployeeResponse;
 import lombok.RequiredArgsConstructor;
@@ -24,14 +25,11 @@ public class EmployeeModelMapper extends AbstractModelMapper<Employee, EmployeeR
         return modelMapper.map(employee, EmployeeResponse.class);
     }
 
+    public Employee toEntity(CreateEmployeeDto createEmployeeDto) {
+        return modelMapper.map(createEmployeeDto, Employee.class);
+    }
 
-//    @Override
-//    public Employee toEntity(EmployeeResponse dto) {
-//        return Objects.isNull(dto) ? null : modelMapper.map(dto, Employee.class);
-//    }
-//
-//    @Override
-//    public EmployeeResponse toDto(Employee employee) {
-//        return Objects.isNull(employee) ? null : modelMapper.map(employee, EmployeeResponse.class);
-//    }
+    public void toEntity(Employee employee, EmployeeRequest employeeRequest) {
+        modelMapper.map(employeeRequest, employee);
+    }
 }

@@ -14,10 +14,4 @@ import java.util.UUID;
  */
 @Repository
 public interface CardRepository extends JpaRepository<Card, UUID> {
-    /**
-     * Находит все {@link Card} по List из uuid
-     * @param uuids List с uuid
-     * @return Возращает List с {@link Card}
-     */
-    List<Card> findByIdIn(List<UUID> uuids);
 }

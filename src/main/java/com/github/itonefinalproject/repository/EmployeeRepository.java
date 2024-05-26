@@ -13,10 +13,5 @@ import java.util.UUID;
  */
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, UUID> {
-    /**
-     * Находит все {@link Employee} по List из uuid
-     * @param uuids List с uuid
-     * @return Возращает List с {@link Employee}
-     */
-    List<Employee> findByIdIn(List<UUID> uuids);
+
 }

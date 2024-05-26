@@ -15,7 +15,7 @@ import java.util.List;
 public class Desk extends AbstractEntity {
     @Column(name = "desk_name")
     private String name;
-    @OneToMany(mappedBy = "desk", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "desk", fetch = FetchType.LAZY)
     private List<Card> cards;
 
     @ManyToMany(fetch = FetchType.LAZY)

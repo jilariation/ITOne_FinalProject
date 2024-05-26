@@ -3,6 +3,7 @@ package com.github.itonefinalproject.mapper;
 import com.github.itonefinalproject.domain.Card;
 import com.github.itonefinalproject.dto.card.CardRequest;
 import com.github.itonefinalproject.dto.card.CardResponse;
+import com.github.itonefinalproject.dto.card.CreateCardDto;
 import com.github.itonefinalproject.dto.task.TaskResponse;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -32,6 +33,16 @@ public class CardModelMapper extends AbstractModelMapper<Card, CardResponse>{
                 .toList();
         cardResponse.setTasks(taskResponseList);
         return cardResponse;
+    }
+
+    public Card toEntity(CreateCardDto createCardDto) {
+        Card card = new Card();
+        card.setName(createCardDto.getName());
+        return card;
+    }
+
+    public void toEntity(Card card, CardRequest cardRequest) {
+        modelMapper.map(cardRequest, card);
     }
 
 

@@ -9,10 +9,4 @@ import java.util.List;
 import java.util.UUID;
 
 public interface EmployeeService extends AbstractService<EmployeeRequest, EmployeeResponse, CreateEmployeeDto> {
-    /**
-     * Находит dto всех {@link Employee} по их ID
-     * @param uuid ID {@link Employee}
-     * @return Возращает List со всеми {@link Employee}
-     */
-    List<EmployeeResponse> getEmployeesById(List<UUID> uuid);
 }

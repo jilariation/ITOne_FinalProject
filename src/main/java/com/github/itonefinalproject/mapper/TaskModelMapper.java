@@ -1,7 +1,9 @@
 package com.github.itonefinalproject.mapper;
 
+import com.github.itonefinalproject.domain.Employee;
 import com.github.itonefinalproject.domain.Task;
 import com.github.itonefinalproject.dto.employee.EmployeeResponse;
+import com.github.itonefinalproject.dto.task.CreateTaskDto;
 import com.github.itonefinalproject.dto.task.TaskRequest;
 import com.github.itonefinalproject.dto.task.TaskResponse;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +33,18 @@ public class TaskModelMapper extends AbstractModelMapper<Task, TaskResponse> {
                 .toList();
         taskResponse.setEmployees(employeeResponseList);
         return taskResponse;
+    }
+
+    public Task toEntity(CreateTaskDto createTaskDto) {
+        Task task = new Task();
+        task.setName(createTaskDto.getName());
+        task.setKindOfTask(createTaskDto.getKindOfTask());
+        return task;
+    }
+
+    public void toEntity(Task task, TaskRequest taskRequest) {
+        task.setName(taskRequest.getName());
+        task.setKindOfTask(taskRequest.getKindOfTask());
     }
 
 //    @Override

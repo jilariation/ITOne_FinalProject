@@ -1,5 +1,4 @@
 create table if not exists task_employee(
-    id uuid primary key,
     employee_id uuid not null ,
     task_id uuid not null ,
 
